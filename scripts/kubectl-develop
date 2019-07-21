@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# optional argument handling
+if [[ "$1" == "version" ]]
+then
+    echo "1.0.0"
+    exit 0
+fi
+
+# optional argument handling
+if [[ "$1" == "config" ]]
+then
+    echo $KUBECONFIG
+    exit 0
+fi
+
+# option for experiment-group
+if [[ "$1" == "exp-group" ]]
+then
+    if [ -z "$2" ] 
+    then
+    	echo "Missing exp-group name"
+	exit 1
+    fi
+    echo "Create exp-group named $2"
+    echo "Step 1: Create kubernetes namespace with name "$2"-- TODO"
+    echo "Step 2: Create git project with name "$2" -- TODO"    
+    exit 0
+fi
+
+# option for experiment
+if [[ "$1" == "experiment" ]]
+then
+    if [ -z "$2" ] 
+    then
+    	echo "Missing experiment name"
+	exit 1
+    fi
+    if [ -z "$3" ] 
+    then
+    	echo "Missing exp-group"
+	exit 1
+    fi
+    if [ -z "$4" ] 
+    then
+    	echo "Missing exp-group name"
+	exit 1
+    fi
+    echo "Create experiment named $2 using exp-group $4"
+    echo "Step 1: Docker build the container having ML code -- TODO"
+    echo "Step 2: Adjust deployment template to use this container -- TODO"
+    echo "Step 3: Deploy container via helm -- TODO"
+    exit 0
+fi
+
